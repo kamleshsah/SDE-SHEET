@@ -1,0 +1,16 @@
+'''
+TC : 2**n
+Subsequence can be contiguous as well as non-contiguous which follows the order.
+'''
+def subsequence(i,arr,carry):
+    if i>=len(arr):
+        print(*carry)
+        return
+    #take the particular index
+    carry.append(arr[i])
+    subsequence(i+1,arr,carry)
+    #remove the particular index
+    carry.remove(arr[i])
+    subsequence(i+1,arr,carry)
+    return
+subsequence(0,[3,1,2],[])
