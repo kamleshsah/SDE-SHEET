@@ -1,0 +1,21 @@
+'''
+problem : https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/
+'''
+#complete the main function
+
+class Solution:
+    def minSwaps(self, nums: List[int]) -> int:
+        sliding_w=nums.count(1)
+        nums=nums+nums
+        i=0;ans=100000000
+        zero=nums[i:sliding_w].count(0)
+        i+=1
+        while sliding_w<len(nums):
+            if nums[sliding_w]==0 and nums[i-1]==1:
+                zero+=1
+            if nums[sliding_w]==1 and nums[i-1]==0:
+                zero-=1
+            sliding_w+=1
+            i+=1
+            ans=min(ans,zero)
+        return ans
