@@ -1,0 +1,17 @@
+def sub_sum_k(i,arr,carry,sum,k):
+    if i==len(arr):
+        if sum==k:
+            print(carry)
+        return
+    carry.append(arr[i])
+    sum+=arr[i]
+    sub_sum_k(i+1,arr,carry,sum,k)
+    
+    carry.pop(len(carry)-1)
+    sum-=arr[i]
+    sub_sum_k(i+1,arr,carry,sum,k)
+    
+    return
+
+arr=[1,2,1]
+sub_sum_k(0,arr,[],0,3)
