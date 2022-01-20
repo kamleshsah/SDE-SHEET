@@ -1,3 +1,8 @@
+'''
+TC : 2**n
+
+'''
+
 def sub_sum_k(i,arr,carry,sum,k):
     if i==len(arr):
         if sum==k:
