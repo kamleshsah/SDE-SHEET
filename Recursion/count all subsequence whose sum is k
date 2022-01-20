@@ -1,0 +1,15 @@
+def sub_sum_k(i,arr,sum,k):
+    if i==len(arr):
+        if sum==k:
+            return 1
+        return 0
+    sum+=arr[i]
+    l=sub_sum_k(i+1,arr,sum,k)
+    
+    sum-=arr[i]
+    r=sub_sum_k(i+1,arr,sum,k)
+
+    return l+r
+
+arr=[1,2,1]
+sub_sum_k(0,arr,0,3)
