@@ -1,0 +1,18 @@
+'''
+problem : https://leetcode.com/problems/combination-sum/
+'''
+def find_unique(i,candidates,target,carry,ds):
+    if i==len(candidates):
+        if target==0:
+            ds.append(carry.copy())
+        return
+    if candidates[i]<=target:
+        carry.append(candidates[i])
+        find_unique(i,candidates,target-candidates[i],carry,ds)
+        carry.pop(len(carry)-1)
+    find_unique(i+1,candidates,target,carry,ds)
+    
+candidates=[2,3,6,7];target=7;
+ds=[];carry=[];
+find_unique(0,candidates,target,carry,ds)
+print(ds)
