@@ -1,0 +1,25 @@
+'''
+https://leetcode.com/problems/combination-sum-ii/
+
+'''
+## combination sum 2 || TC : 2**n * k || https://leetcode.com/problems/combination-sum-ii/
+  
+def find_unique(ind,candidates,target,carry,ans):
+    if target==0:
+        ans.append(carry.copy())
+        return
+    for i in range(ind,len(candidates)):
+        if candidates[i]>target:
+            break
+        if i>ind and candidates[i]==candidates[i-1]:
+            continue
+        else:
+            carry.append(candidates[i])
+            find_unique(i+1,candidates,target-candidates[i],carry,ans)
+            carry.pop()
+    return
+
+
+candidates=[10,1,2,7,6,1,5];target=8;ans=[];candidates.sort()
+find_unique(0,candidates,target,[],ans)
+print(ans)
