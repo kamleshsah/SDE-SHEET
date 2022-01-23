@@ -1,0 +1,23 @@
+'''
+https://leetcode.com/problems/permutations/submissions/
+TC : n!*n || SC : O(n)+O(n)
+
+'''
+def p(nums,ans,carry,fre):
+    if len(carry)==len(nums):
+        ans.append(carry.copy())
+        return
+    for i in range(len(nums)):
+        if fre[i]==0:
+            fre[i]=1
+            carry.append(nums[i])
+            p(nums,ans,carry,fre)
+            carry.pop()
+            fre[i]=0
+
+
+
+ans=[];nums=[1,2,3]
+fre=[0]*len(nums)
+p(nums,ans,[],fre)
+print(ans)
