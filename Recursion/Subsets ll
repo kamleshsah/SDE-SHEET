@@ -1,0 +1,18 @@
+'''
+https://leetcode.com/problems/subsets-ii/submissions/
+TC : 2**n * n || SC : 2**n * k
+'''
+def find_unique(ind,nums,ans):
+    ans.append(carry.copy())
+    for i in range(ind,len(nums)):
+        if i>ind and nums[i]==nums[i-1]:
+            continue
+        else:
+            carry.append(nums[i])
+            find_unique(i+1,nums,ans)
+            carry.pop()
+    return
+ans=[];nums=[1,2,2]
+nums.sort()
+find_unique(0,nums,ans)
+print(ans)
