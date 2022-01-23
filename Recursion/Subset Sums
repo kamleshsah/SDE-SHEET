@@ -1,0 +1,21 @@
+'''
+https://practice.geeksforgeeks.org/problems/subset-sums2234/1/#
+
+'''
+
+def sum_s(i,arr,n,sum,carry,ans):
+    if i==n:
+        ans.append(sum)
+        return
+    carry.append(arr[i])
+    sum+=arr[i]
+    sum_s(i+1,arr,n,sum,carry,ans)
+    carry.pop()
+    sum-=arr[i]
+    sum_s(i+1,arr,n,sum,carry,ans)
+    return
+       
+carry=[];ans=[];
+sum_s(0,[5,2,1],3,0,carry,ans)
+ans.sort()
+print(*ans)
