@@ -1,0 +1,26 @@
+## N-Queen Problem || https://leetcode.com/problems/n-queens/ || Approach 2
+
+def N_queen(col,board,ans,left_r,below_left_diag,upper_left_diag):
+    if col==len(board):
+        ans.append([''.join(i) for i in board])
+        return
+    for row in range(len(board)):
+        if left_r[row]==0 and below_left_diag[row+col]==0 and upper_left_diag[col-row]==0:
+            board[row][col]='Q'
+            left_r[row]=1
+            below_left_diag[row+col]=1
+            upper_left_diag[col-row]=1
+            N_queen(col+1,board,ans,left_r,below_left_diag,upper_left_diag)
+            board[row][col]='.'
+            left_r[row]=0
+            below_left_diag[row+col]=0
+            upper_left_diag[col-row]=0
+
+
+N=4;ans=[]
+board=[['.' for i in range(N)]for j in range(N)]
+left_r=[0]*N
+below_left_diag=[0]*(2*N-1)
+upper_left_diag=[0]*(2*N-1)
+N_queen(0,board,ans,left_r,below_left_diag,upper_left_diag)
+print(ans)
