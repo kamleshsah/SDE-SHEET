@@ -1,0 +1,40 @@
+## N-Queen Problem || https://leetcode.com/problems/n-queens/ ||
+
+def is_safe(row,col,board):
+    duprow=row;dupcol=col;
+    while row>=0 and col>=0:
+        if board[row][col]=='Q':
+            return False
+        row-=1
+        col-=1
+    
+    col=dupcol;row=duprow;
+    while col>=0:
+        if board[row][col]=='Q':
+            return False
+        col-=1
+    
+    col=dupcol;row=duprow;
+    while row<len(board) and col>=0:
+        if board[row][col]=='Q':
+            return False
+        col-=1
+        row+=1
+    
+    return True
+
+def N_queen(col,board,ans):
+    if col==len(board):
+        ans.append([''.join(i) for i in board])
+        return
+    for row in range(len(board)):
+        if is_safe(row,col,board)==True:
+            board[row][col]='Q'
+            N_queen(col+1,board,ans)
+            board[row][col]='.'
+
+
+N=4;ans=[]
+board=[['.' for i in range(N)]for j in range(N)]
+N_queen(0,board,ans)
+print(ans)
