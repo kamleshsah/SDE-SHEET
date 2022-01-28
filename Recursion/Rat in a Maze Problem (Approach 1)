@@ -1,0 +1,38 @@
+## Rat in a Maze Approach 1 || TC : 4*(n*m) || SC : O(n*m) || https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1#
+
+def solve(row,col,ans,n,visited,move,m):
+
+    if row==n-1 and col==n-1:
+        ans.append(move)
+        return
+
+    if row+1<n and m[row+1][col]==1 and visited[row+1][col]==0:
+        visited[row][col]=1
+        solve(row+1,col,ans,n,visited,move+'D',m)
+        visited[row][col]=0
+
+    if col-1>=0 and m[row][col-1]==1 and visited[row][col-1]==0:
+        visited[row][col]=1
+        solve(row,col-1,ans,n,visited,move+'L',m)
+        visited[row][col]=0
+
+    if col+1<n and m[row][col+1]==1 and visited[row][col+1]==0:
+        visited[row][col]=1
+        solve(row,col+1,ans,n,visited,move+'R',m)
+        visited[row][col]=0
+
+    if row-1>=0 and m[row-1][col]==1 and visited[row-1][col]==0:
+        visited[row][col]=1
+        solve(row-1,col,ans,n,visited,move+'U',m)
+        visited[row][col]=0
+
+
+
+ans=[];n=4
+m=[[1,0,0,0],[1,1,0,1],[1,1,0,1],[0,1,1,1]]
+visited=[[0 for j in range(n)]for i in range(n)]
+if m[0][0]==1:
+    solve(0,0,ans,n,visited,'',m)
+    print(ans)
+else:
+    print(-1)
