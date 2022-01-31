@@ -1,0 +1,48 @@
+'''
+GFG solution
+## knapsack problem || https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1/#
+'''
+class Solution:    
+  def fractionalknapsack(self, w,Items,n):
+      arr=[];ans=0
+      for i in Items:
+          arr.append([i.value/i.weight,i.value,i.weight])
+      arr=sorted(arr,key=lambda x:x[0],reverse=True)
+      i=0
+      while i<n and w>0:
+          if arr[i][2]<=w:
+              w-=arr[i][2]
+              ans+=arr[i][1]
+
+          else:
+              ans+=arr[i][0]*w
+              w=0
+
+          i+=1
+      return ans
+      
+      
+'''
+Without class and Objects
+'''
+
+def fractionalknapsack(values,weight,n,w):
+    arr=[];ans=0
+    for i in range(n):
+        arr.append([values[i]/weight[i],values[i],weight[i]])
+    arr=sorted(arr,key=lambda x:x[0],reverse=True)
+    i=0
+    while i<n and w>0:
+        if arr[i][2]<=w:
+            w-=arr[i][2]
+            ans+=arr[i][1]
+
+        else:
+            ans+=arr[i][0]*w
+            w=0
+        i+=1
+    return ans
+n = 3;w = 50
+values = [60,100,120]
+weight = [10,20,30]
+print("{:.2f}".format(fractionalknapsack(values,weight,n,w)))
