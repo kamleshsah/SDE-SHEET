@@ -1,0 +1,21 @@
+## Number of coins || https://practice.geeksforgeeks.org/problems/number-of-coins1824/1/# 
+## can take one coin multiple times
+## Can use DP to optimized to O(mn)
+
+def solve(ind,coins,m,v,carry,t):
+    if v==0:
+        t.append(len(carry))
+        return
+    if ind>=m:
+        return
+    
+    if coins[ind]<=v:
+        carry.append(coins[ind])
+        solve(ind,coins,m,v-coins[ind],carry,t)
+        carry.pop()
+    solve(ind+1,coins,m,v,carry,t)
+    
+carry=[];t=[]
+coins=[9,6,5,1];M=4;V=13
+solve(0,coins,M,V,carry,t)
+print(min(t))
