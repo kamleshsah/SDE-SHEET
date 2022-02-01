@@ -1,0 +1,28 @@
+
+
+## 3 Sum || https://leetcode.com/problems/3sum/ || TC: O(n*n) || SC : O(m)
+
+def solve(nums):
+    nums.sort();ans=[]
+    for i in range(len(nums)-2):
+        a=-(nums[i])
+        if i==0 or (i>=0 and nums[i]!=nums[i-1]):
+            low=i+1;high=len(nums)-1
+            while low<high:
+                val=nums[low] + nums[high]
+                if val==a:
+                    partition=[nums[i],nums[low],nums[high]]
+                    ans.append(partition)
+                    while low<high and nums[low]==nums[low+1]:
+                        low+=1
+                    while low<high and nums[high]==nums[high-1]:
+                        high-=1
+                    low+=1;high-=1
+
+                elif val<a:
+                    low+=1
+                elif val>a:
+                    high-=1
+    print(ans)
+nums = [-1,0,1,2,-1,-4]
+solve(nums)
