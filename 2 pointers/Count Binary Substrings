@@ -1,0 +1,32 @@
+## Count Binary Substrings || TC : O(n) SC : O(1) || https://leetcode.com/problems/count-binary-substrings/ 
+
+def countBinarySubstrings(s):
+    zero_cnt=0;one_cnt=0;cnt=0
+    flag_zero=False;flag_one=False
+
+    for i in s:
+        if i=='0':
+            if flag_zero:
+                zero_cnt=0
+                flag_zero=False
+
+            if one_cnt>0:
+                cnt+=1
+                one_cnt-=1
+            zero_cnt+=1
+            flag_one=True
+
+        else:
+            if flag_one:
+                one_cnt=0
+                flag_one=False
+
+            if zero_cnt>0:
+                cnt+=1
+                zero_cnt-=1
+
+            one_cnt+=1
+            flag_zero=True
+    return cnt
+s='00110011'
+print(countBinarySubstrings(s))
