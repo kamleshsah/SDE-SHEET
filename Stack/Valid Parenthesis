@@ -1,0 +1,23 @@
+## valid Parenthesis || https://leetcode.com/problems/valid-parentheses/submissions/
+
+def isValid(s):
+    x="()[]{}";cnt=[]
+    front='([{'
+    back=")}]"
+    for i in s:
+        if len(cnt)==0 and i in back:
+            return False
+        if i in back and len(cnt)!=0:
+            t1=cnt[-1]+i
+            if t1 in x:
+                cnt.pop()
+            else:
+                return False
+        else:
+            cnt.append(i)
+
+    if len(cnt)==0:
+          return True
+    return False
+
+print(isValid("()[]{}"))
