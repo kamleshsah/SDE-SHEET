@@ -1,0 +1,22 @@
+## Generate Parenthesis || https://leetcode.com/problems/generate-parentheses/
+
+def solve(n,carry,ans,cnt,val):
+    if cnt==n:
+        ans.append(''.join(carry))
+        return
+
+    if cnt+val<n:
+        carry.append("(")
+        solve(n,carry,ans,cnt,val+1)
+        carry.pop()
+
+    if val>0:
+        carry.append(")")
+        solve(n,carry,ans,cnt+1,val-1)
+        carry.pop()
+
+
+
+ans=[]   
+solve(3,[],ans,0,0)
+print(ans)
