@@ -1,0 +1,20 @@
+### VVI || Largest subarray with 0 sum || https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1/
+
+def maxLen(n, nums):
+    d={};cnt=0;ans=0;s=0
+    for i in range(n):
+        s+=nums[i]
+        if s==0:
+            cnt=i+1
+            if cnt>ans:
+                ans=cnt
+        if s in d:
+            cnt=i-d[s]
+            if cnt>ans:
+                ans=cnt
+        else:
+            d[s]=i
+    return ans
+
+n=8;nums=[15,-2,2,-8,1,7,10,23]
+print(maxLen(n, nums))
