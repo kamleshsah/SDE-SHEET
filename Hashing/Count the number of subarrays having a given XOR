@@ -1,0 +1,25 @@
+## Count the number of subarrays having a given XOR || https://www.geeksforgeeks.org/count-number-subarrays-given-xor/
+## TC : O(nlogn) || SC : O(n)
+
+def solve(arr,k):
+    xor=0
+    cnt=0
+    d={}
+    for i in range(len(arr)):
+        xor^=arr[i]
+        if xor==k:
+            cnt+=1
+        if i!=0:
+            y=xor^k
+            if y in d:
+                cnt+=d[y]
+        if xor not in d:
+            d[xor]=1
+        else:
+            d[xor]+=1
+            
+    return cnt
+
+arr1=[5, 6, 7, 8, 9];k1=5
+arr=[4, 2, 2, 6, 4];k=6
+print(solve(arr1,k1))
