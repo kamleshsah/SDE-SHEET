@@ -1,0 +1,20 @@
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        hard=['','','abc','def','ghi','jkl','mno','pqrs','tuv','wxyz']
+        
+        def solve(ind,hard,carry,ans,digits):
+            if len(digits)==0:
+                if len(carry)!=0:
+                    ans.append(''.join(carry))
+                return
+           
+            for i in hard[int(digits[0])]:
+                carry.append(i)
+                solve(ind,hard,carry,ans,digits[1:])
+                carry.pop()
+            return
+        
+        
+        ans=[]
+        solve(0,hard,[],ans,digits)
+        return ans
