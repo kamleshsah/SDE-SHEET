@@ -1,0 +1,38 @@
+'''
+https://leetcode.com/problems/word-search/
+'''
+
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+ 
+        def sol(row,col,board,word,visited):
+            if len(word)==0:
+                return True
+            if row==len(board) or col==len(board[0]) or row==-1 or col==-1:
+                return False
+            if visited[row][col]==1:
+                return False
+            if board[row][col]==word[0]:
+                visited[row][col]=1
+                if sol(row,col+1,board,word[1:],visited):
+                    return True
+                if sol(row,col-1,board,word[1:],visited):
+                    return True
+                if sol(row+1,col,board,word[1:],visited):
+                    return True
+                if sol(row-1,col,board,word[1:],visited):
+                    return True
+                visited[row][col]=0
+            return False
+            
+        
+        def solve(row,col,board,word,visited):
+            for i in range(len(board)):
+                for j in range(len(board[0])):
+                    if sol(i,j,board,word,visited):
+                        return True
+            return False
+        
+        visited=[[0 for i in range(len(board[0]))]for i in range(len(board))]
+        return solve(0,0,board,word,visited)
