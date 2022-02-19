@@ -1,0 +1,28 @@
+## stone Game VII || https://leetcode.com/contest/weekly-contest-219/problems/stone-game-vii/
+
+def solve(l,r,stones,player,dp):
+    if l>=r:
+        return 0
+
+    if dp[l][r]!=-1:
+        return dp[l][r]
+    res=0
+    if player==1:
+        left=(sum(stones[l:r+1])-stones[l])+solve(l+1,r,stones,abs(player-1),dp)
+        right=(sum(stones[l:r+1])-stones[r])+solve(l,r-1,stones,abs(player-1),dp)
+        res=max(left,right)
+
+    else:
+        left=-(sum(stones[l:r+1])-stones[l])+solve(l+1,r,stones,abs(player-1),dp)
+        right=-(sum(stones[l:r+1])-stones[r])+solve(l,r-1,stones,abs(player-1),dp)
+        res=min(left,right)
+
+
+    dp[l][r]=res
+    return res
+
+
+stones=[5,3,1,4,2]
+n=len(stones)    
+dp=[[-1 for i in range(n+1)]for j in range(n+1)]
+print(solve(0,n-1,stones,1,dp))
