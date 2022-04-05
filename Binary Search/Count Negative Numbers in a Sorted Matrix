@@ -1,0 +1,29 @@
+'''
+https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/submissions/
+'''
+class Solution:
+    def countNegatives(self, grid: List[List[int]]) -> int:
+        def binary_(l,e,arr):
+            if l==e:
+                if arr[0]<0:
+                    return 1
+                return 0
+            index=-1
+            while l<e:
+                mid=(l+e)//2
+                if i[mid]<0:
+                    index=mid
+                    e=mid
+                else:
+                    l=mid+1
+            return index
+            
+        ans=0
+        for i in grid:
+            l=len(i)
+            t=binary_(0,l,i)
+            if t==-1:
+                ans+=0
+            else:
+                ans+=(l-t)
+        return ans
