@@ -1,0 +1,23 @@
+'''
+https://leetcode.com/contest/weekly-contest-287/problems/maximum-candies-allocated-to-k-children/
+'''
+
+class Solution:
+    def maximumCandies(self, candies: List[int], k: int) -> int:
+        low=0
+        maxx=sum(candies)//k
+        maxx+=1
+        ans=0
+        while low<maxx:
+            mid=(low+maxx)//2
+            cnt=0
+            if mid==0:
+                return 0
+            for i in candies:
+                cnt+=i//mid       
+            if cnt>=k:
+                ans=max(mid,ans)
+                low=mid+1
+            else:
+                maxx=mid
+        return ans
