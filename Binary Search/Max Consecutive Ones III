@@ -1,0 +1,18 @@
+'''
+https://leetcode.com/problems/max-consecutive-ones-iii/
+'''
+class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        count={0:0,1:0}
+        j=0
+        ans=0
+        for i in range(len(nums)):
+            count[nums[i]]+=1
+            
+            while count[0]>k:
+                count[nums[j]]-=1
+                j+=1
+            
+            l=i-j+1
+            ans=max(ans,l)
+        return ans
