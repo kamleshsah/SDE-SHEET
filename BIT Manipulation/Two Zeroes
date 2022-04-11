@@ -1,0 +1,13 @@
+'''
+https://www.codingninjas.com/codestudio/contests/codestudio-weekend-contest-16/problems/19066?leftPanelTab=0
+'''
+
+def countInteresting(l: int, r: int) -> int:
+	cnt=0
+	for i in range(0,32):
+		for j in range(0,i-1):
+			for k in range(j+1,i-1):
+				num=((1<<i)-1)^(1<<j)^(1<<k)
+				if num>=l and num<=r:
+					cnt+=1
+	return cnt
