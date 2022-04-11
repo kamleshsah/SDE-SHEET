@@ -1,5 +1,7 @@
 '''
 https://www.codingninjas.com/codestudio/contests/codestudio-weekend-contest-16/problems/19066?leftPanelTab=0
+(1<<i)-1 -> Gives largest number for i no of bits. Eg if i==3 so (1<<3)-1 = (8-1) = 7(111)
+(1>>j) -> This is used to flip the bits to zero. Eg : if j==1,(1<<j) = 2(10) then for i==3 Xor will be (111)^(10) = (101) thus the first index fliped to zero.
 '''
 
 def countInteresting(l: int, r: int) -> int:
