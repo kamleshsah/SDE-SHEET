@@ -1,0 +1,40 @@
+'''
+https://www.codingninjas.com/codestudio/contests/love-babbar-contest-8/problems/19409?leftPanelTab=0
+'''
+
+def goodCells(v):
+
+    # Here 'n' will represent the number of rows of the matrix and 'm' will represent the number of columns of the
+    # matrix.
+    n = len(v)
+    m = len(v[0])
+
+    row = [0] * n
+    col = [0] * m
+
+    # Now we will pre-compute the xor of all the elements of each row.
+    for i in range(n):
+        val = 0
+        for j in range(m):
+            val ^= v[i][j]
+
+        row[i] = val
+
+    # Now we will pre-compute the xor of all the elements of each column.
+    for j in range(m):
+        val = 0
+        for i in range(n):
+            val ^= v[i][j]
+
+        col[j] = val
+
+    # Here 'ans' will store the number of good cells.
+    ans = 0
+    for i in range(n):
+        for j in range(m):
+
+            # If the xor value of all the elements of 'ith' row and 'jth' column is same then it is a good cell.
+            if row[i] == col[j]:
+                ans += 1
+
+    return ans
